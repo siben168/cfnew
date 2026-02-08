@@ -8,7 +8,6 @@
 
 ## 文件结构
 
-
 | 文件               | 说明                           |
 | ------------------ | ------------------------------ |
 | `明文源吗`         | 源代码（JS，可读）             |
@@ -108,7 +107,6 @@ git push
 
 ### 文件说明
 
-
 | 文件                | 说明                                |
 | ------------------- | ----------------------------------- |
 | `custom-rules.yaml` | 自定义 rule-providers 和 rules 配置 |
@@ -127,20 +125,25 @@ git push
 
 ### 清除 CDN 缓存（可选）
 
-git raw库有缓存问题，为了加速并可以更新缓存，做了如下更改：
+GitHub Raw 有缓存问题，为了加速并支持手动刷新缓存，所有配置文件都改为 jsDelivr CDN：
 
-```javascript
-// 原来
-https://raw.githubusercontent.com/siben168/cfnew/main/custom-rules.yaml
-// 改为 jsDelivr（自动缓存刷新更快）
-https://cdn.jsdelivr.net/gh/siben168/cfnew@main/custom-rules.yaml
-```
+| 文件                | jsDelivr URL                                                        |
+| ------------------- | ------------------------------------------------------------------- |
+| `clash-config.ini`  | `https://cdn.jsdelivr.net/gh/siben168/cfnew@main/clash-config.ini`  |
+| `custom-rules.yaml` | `https://cdn.jsdelivr.net/gh/siben168/cfnew@main/custom-rules.yaml` |
 
-规则通过 jsDelivr CDN 加载，修改后如需立即生效：
+修改配置文件后，如需立即生效，访问以下 URL 清除缓存：
 
 ```bash
-# 访问此 URL 清除缓存
+# 清除 clash-config.ini 缓存（代理组配置）
+https://purge.jsdelivr.net/gh/siben168/cfnew@main/clash-config.ini
+
+# 清除 custom-rules.yaml 缓存（规则配置）
 https://purge.jsdelivr.net/gh/siben168/cfnew@main/custom-rules.yaml
 ```
 
-> 💡 如果不手动清除，CDN 缓存会在约 24 小时后自动刷新。
+> 💡 **注意**：
+>
+> - 修改 `clash-config.ini` 或 `custom-rules.yaml` 后，只需清除对应缓存即可生效
+> - 修改 `明文源吗` 后，需要等待 GitHub Actions 混淆并部署到 Cloudflare
+> - 如果不手动清除，CDN 缓存会在约 24 小时后自动刷新
