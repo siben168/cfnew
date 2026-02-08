@@ -8,6 +8,7 @@
 
 ## 文件结构
 
+
 | 文件               | 说明                           |
 | ------------------ | ------------------------------ |
 | `明文源吗`         | 源代码（JS，可读）             |
@@ -107,6 +108,7 @@ git push
 
 ### 文件说明
 
+
 | 文件                | 说明                                |
 | ------------------- | ----------------------------------- |
 | `custom-rules.yaml` | 自定义 rule-providers 和 rules 配置 |
@@ -124,6 +126,15 @@ git push
 ```
 
 ### 清除 CDN 缓存（可选）
+
+git raw库有缓存问题，为了加速并可以更新缓存，做了如下更改：
+
+```javascript
+// 原来
+https://raw.githubusercontent.com/siben168/cfnew/main/custom-rules.yaml
+// 改为 jsDelivr（自动缓存刷新更快）
+https://cdn.jsdelivr.net/gh/siben168/cfnew@main/custom-rules.yaml
+```
 
 规则通过 jsDelivr CDN 加载，修改后如需立即生效：
 
