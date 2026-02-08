@@ -1400,7 +1400,7 @@
             const rulesIdx = clashConfig.indexOf('\nrules:');
             if (rulesIdx !== -1) {
                 try {
-                    const customRulesUrl = 'https://raw.githubusercontent.com/siben168/cfnew/main/custom-rules.yaml';
+                    const customRulesUrl = 'https://cdn.jsdelivr.net/gh/siben168/cfnew@main/custom-rules.yaml';
                     const rulesResp = await fetch(customRulesUrl);
                     if (rulesResp.ok) {
                         let customRules = await rulesResp.text();

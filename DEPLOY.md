@@ -99,4 +99,37 @@ git push
 1. **clash-config.ini 必须放在项目根目录**（不是 dist/）
 2. **修改 `明文源吗` 后会自动触发混淆**
 3. **发布新版本需要创建 tag**
-4. **合并上游时注意保留第 1349 行的修改**
+4. **合并上游时注意保留第 1349 行和 1403 行的修改**
+
+---
+
+## 📦 自定义规则配置
+
+### 文件说明
+
+| 文件                | 说明                                |
+| ------------------- | ----------------------------------- |
+| `custom-rules.yaml` | 自定义 rule-providers 和 rules 配置 |
+
+### 修改规则流程
+
+```bash
+# 1. 编辑规则文件
+vim custom-rules.yaml
+
+# 2. 提交推送
+git add custom-rules.yaml
+git commit -m "update: 修改规则"
+git push
+```
+
+### 清除 CDN 缓存（可选）
+
+规则通过 jsDelivr CDN 加载，修改后如需立即生效：
+
+```bash
+# 访问此 URL 清除缓存
+https://purge.jsdelivr.net/gh/siben168/cfnew@main/custom-rules.yaml
+```
+
+> 💡 如果不手动清除，CDN 缓存会在约 24 小时后自动刷新。
