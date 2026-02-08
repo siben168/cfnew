@@ -1396,51 +1396,21 @@
                 return header + `    - ${dnsServer}\n`;
             });
             
-            // === 注入自定义 Rule Providers (最小改动) ===
+            // === 注入自定义 Rule Providers (从外部文件加载) ===
             const rulesIdx = clashConfig.indexOf('\nrules:');
             if (rulesIdx !== -1) {
-                clashConfig = clashConfig.substring(0, rulesIdx) + `
-rule-providers:
-  Cloudflare:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflare/Cloudflare.yaml"
-    path: ./ruleset/Cloudflare.yaml
-    interval: 86400
-  OpenAI:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml"
-    path: ./ruleset/OpenAI.yaml
-    interval: 86400
-  Claude:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.yaml"
-    path: ./ruleset/Claude.yaml
-    interval: 86400
-  Google:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml"
-    path: ./ruleset/Google.yaml
-    interval: 86400
-  Telegram:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml"
-    path: ./ruleset/Telegram.yaml
-    interval: 86400
-
-rules:
-  - RULE-SET,Cloudflare,🎯 全球直连
-  - RULE-SET,OpenAI,🤖 OpenAI
-  - RULE-SET,Claude,🧠 Claude
-  - RULE-SET,Google,🔍 Google
-  - RULE-SET,Telegram,📲 电报信息
-  - GEOIP,CN,🎯 全球直连
-  - MATCH,🐟 漏网之鱼
-`;
+                try {
+                    const customRulesUrl = 'https://raw.githubusercontent.com/siben168/cfnew/main/custom-rules.yaml';
+                    const rulesResp = await fetch(customRulesUrl);
+                    if (rulesResp.ok) {
+                        let customRules = await rulesResp.text();
+                        // 移除 YAML 注释行
+                        customRules = customRules.split('\n').filter(line => !line.trim().startsWith('#')).join('\n');
+                        clashConfig = clashConfig.substring(0, rulesIdx) + '\n' + customRules;
+                    }
+                } catch (e) {
+                    // 加载失败时保持原有规则
+                }
             }
             
             return clashConfig;
