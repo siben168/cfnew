@@ -1,36 +1,76 @@
-# 自定义规则配置文件
+# 自定义规则配置文件 - 精简版
+# 使用 No_Resolve 系列，跳过 DNS 解析，更快更稳定
 # 修改此文件即可更新规则，无需修改源代码
 
 rule-providers:
   Cloudflare:
     type: http
     behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflare/Cloudflare.yaml"
-    path: ./ruleset/Cloudflare.yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflare/Cloudflare_No_Resolve.yaml"
+    path: ./ruleset/Cloudflare_No_Resolve.yaml
     interval: 86400
+
   OpenAI:
     type: http
     behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml"
-    path: ./ruleset/OpenAI.yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI_No_Resolve.yaml"
+    path: ./ruleset/OpenAI_No_Resolve.yaml
     interval: 86400
+
   Claude:
     type: http
     behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.yaml"
-    path: ./ruleset/Claude.yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude_No_Resolve.yaml"
+    path: ./ruleset/Claude_No_Resolve.yaml
     interval: 86400
+
   Google:
     type: http
     behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml"
-    path: ./ruleset/Google.yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google_No_Resolve.yaml"
+    path: ./ruleset/Google_No_Resolve.yaml
     interval: 86400
+
   Telegram:
     type: http
     behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml"
-    path: ./ruleset/Telegram.yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram_No_Resolve.yaml"
+    path: ./ruleset/Telegram_No_Resolve.yaml
+    interval: 86400
+
+  Apple:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Classical_No_Resolve.yaml"
+    path: ./ruleset/Apple_No_Resolve.yaml
+    interval: 86400
+
+  Microsoft:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft_No_Resolve.yaml"
+    path: ./ruleset/Microsoft_No_Resolve.yaml
+    interval: 86400
+
+  GlobalMedia:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical_No_Resolve.yaml"
+    path: ./ruleset/GlobalMedia_No_Resolve.yaml
+    interval: 86400
+
+  Lan:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan_No_Resolve.yaml"
+    path: ./ruleset/Lan_No_Resolve.yaml
+    interval: 86400
+
+  ChinaMax:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Classical_No_Resolve.yaml"
+    path: ./ruleset/ChinaMax_No_Resolve.yaml
     interval: 86400
 
 rules:
@@ -39,5 +79,10 @@ rules:
   - RULE-SET,Claude,🧠 Claude
   - RULE-SET,Google,🔍 Google
   - RULE-SET,Telegram,📲 电报信息
+  - RULE-SET,Apple,🍎 苹果服务
+  - RULE-SET,Microsoft,Ⓜ️ 微软服务
+  - RULE-SET,GlobalMedia,🌍 国外媒体
+  - RULE-SET,Lan,🎯 全球直连
+  - RULE-SET,ChinaMax,🎯 全球直连
   - GEOIP,CN,🎯 全球直连
   - MATCH,🐟 漏网之鱼
