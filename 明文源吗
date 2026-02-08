@@ -1346,7 +1346,7 @@
         subscriptionUrl.pathname = subscriptionUrl.pathname.replace(/\/sub$/, '') + '/sub';
         subscriptionUrl.searchParams.set('target', 'base64');
         const encodedUrl = encodeURIComponent(subscriptionUrl.toString());
-        const converterUrl = `${scu}?target=clash&url=${encodedUrl}&insert=false&config=${encodeURIComponent('https://raw.githubusercontent.com/siben168/cfnew/main/clash-config.ini')}&emoji=true&list=false&xudp=false&udp=false&tfo=false&expand=true&scv=false&fdn=false&new_name=true`;
+        const converterUrl = `${scu}?target=clash&url=${encodedUrl}&insert=false&config=${encodeURIComponent('https://cdn.jsdelivr.net/gh/siben168/cfnew@main/clash-config.ini')}&emoji=true&list=false&xudp=false&udp=false&tfo=false&expand=true&scv=false&fdn=false&new_name=true`;
         
         try {
             const response = await fetch(converterUrl);
