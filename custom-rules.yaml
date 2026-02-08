@@ -85,4 +85,7 @@ rules:
   - RULE-SET,Lan,🎯 全球直连
   - RULE-SET,ChinaMax,🎯 全球直连
   - GEOIP,CN,🎯 全球直连
+  # 自定义域名 - Cloudflare 部署的站点
+  - DOMAIN-SUFFIX,hohoha.top,🎯 全球直连
+  - DOMAIN-SUFFIX,aidesk.me,🎯 全球直连
   - MATCH,🐟 漏网之鱼
